@@ -1,0 +1,18 @@
+Flask
+connexion
+Flask-Injector
+injector==0.12.0
+beautifulsoup4
+requests
+lxml >=3.6.4
+GoogleScraper==0.1.1
+googlesearch-python
+facebook-scraper
+twitter_scraper
+selenium
+bs4
+pandas
+numpy
+webdriver_manager
+connexion[swagger-ui]
+pyvirtualdisplay
