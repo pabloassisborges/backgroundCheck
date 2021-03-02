@@ -1,0 +1,83 @@
+swagger: "2.0"
+info:
+  description: Swagger file para descrição da API de Background Check. Esta é uma POC do produto, cujo objetivo é realizar uma verificação do cliente, a fim de compreender sua confiabilidade.
+  version: "1.0.0"
+  title: Background Check API
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+
+basePath: "/api/v1"
+# Paths supported by the server application
+paths:
+  /background/{nome}:
+    get:
+      operationId: "bgcheck.api.user_background_api.check"
+      parameters:
+        - in: path
+          name: nome
+          required: true
+          type: string
+      tags:
+        - "Background Check (STF, STJ, Jusbrasil, Facebook e Google)"
+      summary: "Listagem de Possíveis Processos e Crimes"
+      description: "Leia a lista de informações"
+      responses:
+        200:
+          description: "Sucesso na leitura do site e extração dos dados."
+          schema:
+            type: "array"
+            items:
+                $ref: "#/definitions/Background"
+  /tribunais/{nome}:
+    get:
+      operationId: "bgcheck.api.tribunais_api.consulta_tribunais"
+      parameters:
+      - in: path
+        name: nome
+        type: string
+        required: true
+      tags: 
+        - "Tribunais (STF, STJ, TJ, Jusbrasil)"
+      summary: Listagem de Processos.
+      description: Realiza uma busca em diversas bases em busca de processos referentes ao nome pesquisado. A busca retornará também links referentes aos processos encontrados.
+      responses:
+        "200":
+          description: "Processos encontrados"
+
+  /relatorio/{nome}:
+    get:
+      operationId: "bgcheck.api.relatorio_api.gerar_relatorio"
+      parameters:
+      - in: path
+        name: nome
+        type: string
+        required: true
+      tags: 
+        - "Background Check a partir do nome (STF, STJ, Jusbrasil, Facebook e Google)"
+      summary: Listagem de Processos.
+      description: Realiza uma busca completa e gera um relatório em formato JSON com os processos, os resultados do google e outras informações.
+      responses:
+        "200":
+          description: "Relatório gerado"
+
+
+
+definitions:
+  Background:
+    type: object
+    properties:
+      name: 
+        type: string
+      background:
+        type: object
+        properties:
+          stf:
+            type: string
+          jusbrasil:
+            type: string
+          google:
+            type: array
+            items:
+              type: string

@@ -1,1 +1,3 @@
-# backgroundCheck
+# Background check
+
+## Setup e instalação do projeto
