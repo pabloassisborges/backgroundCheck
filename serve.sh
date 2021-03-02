@@ -1,2 +1,2 @@
-SET FLASK_ENV=development
+export FLASK_ENV=development
 python server.py
